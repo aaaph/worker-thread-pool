@@ -30,10 +30,6 @@ export class WorkerPool {
    */
   async _inject(index = 0) {
     const unit = this.pool[index];
-    if (!unit) {
-      await setImmediate();
-      return this._inject(index);
-    }
     const isFree = unit.lock === 0;
     if (!isFree) {
       await setImmediate();
